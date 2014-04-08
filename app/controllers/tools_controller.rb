@@ -6,10 +6,13 @@ class ToolsController < ApplicationController
   end
 
   def create
-    render text: "Tools CREATEZ!!!"
+    @tool = Tool.new(params[:tool])
+    @tool.save
+    redirect_to @tool
   end
 
   def show
+    @tool = Tool.find(params[:id])
   end
 
   def edit
@@ -21,5 +24,9 @@ class ToolsController < ApplicationController
   def show
   end
 
+  private
+    def tool_params
+      params.require(:tool).permit(:name, :category, :description, :photos, :price, :tag)
+    end
 
 end
