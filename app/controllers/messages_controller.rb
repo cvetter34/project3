@@ -10,7 +10,12 @@ class MessagesController < ApplicationController
     # elsif params[:mailbox] == "inbox"
     #   @messages = @user.received_messages
     # end
-    @messages = @user.received_messages + @user.sent_messages
+    # @messages = @user.received_messages + @user.sent_messages
+    @messages = if params[:id]
+      Message.where("id in (?)", params[:id].split(','))
+    else
+      Message.all
+    end
   end
 
   def new
@@ -53,7 +58,7 @@ class MessagesController < ApplicationController
   private
 
   def message_params
-    params.require(:message).permit(:subject, :body, :sender_id, :recipient_id, :read_at, :sender_deleted, :recipient_deleted, :message_list_token)
+    params.require(:message).permit(:id, :subject, :body, :sender_id, :recipient_id, :read_at, :sender_deleted, :recipient_deleted, :message_list_token)
   end
 
   def set_user

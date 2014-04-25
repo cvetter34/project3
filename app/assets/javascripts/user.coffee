@@ -31,3 +31,4 @@ $ ->
         for user in data.users
           $('#ajax_user').append('Name: ' + user.name + 'City: ' + user.city + 'Country: ' + user.country)
 
+
