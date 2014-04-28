@@ -47,10 +47,9 @@ class ToolsController < ApplicationController
 
   def update
     if @tool.update(tool_params)
-      render :nothing => true, :status => 200, :content_type => 'text/html'
+      head :no_content
       # redirect_to root_url, notice: "You have edit your tool successfully"
     else
-
       # render :edit
       head :unprocessable_entity
     end

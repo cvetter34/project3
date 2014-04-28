@@ -3,9 +3,6 @@ Project3::Application.routes.draw do
   root 'site#index'
 
   resources :site
-  resources :messages
-
-  get   'messages' => 'messages#index'
 
   get  'register' => 'registration#new', as: :register
   post 'register' => 'registration#create'
@@ -35,6 +32,10 @@ Project3::Application.routes.draw do
           get ':id' => "transactions#index", on: :collection
         end
 
+        resources :conversations, except: [ :edit, :new ], defaults: {format: :json} do
+          get ':id' => "conversations#index", on: :collection
+        end
+
     end
 
     resources :tools, except: [ :edit, :new ], defaults: {format: :json} do
@@ -49,6 +50,14 @@ Project3::Application.routes.draw do
     resources :transactions, except: [ :edit, :new ], defaults: {format: :json} do
       get ':id' => "transactions#index", on: :collection
     end
+
+    resources :conversations, except: [ :edit, :new ], defaults: {format: :json} do
+      get ':id' => "conversations#index", on: :collection
+    end
+
+      resources :messages, except: [ :edit, :new ], defaults: {format: :json} do
+        get ':id' => "messages#index", on: :collection
+      end
   end
 
 end

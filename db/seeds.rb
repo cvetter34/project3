@@ -9,6 +9,8 @@
 User.destroy_all
 Tool.destroy_all
 Transaction.destroy_all
+Message.destroy_all
+Conversation.destroy_all
 
 User.create ([
   {
@@ -99,3 +101,22 @@ Transaction.create ([
     tool_id: 3
   }
 ])
+
+Message.create ([
+  {
+    subject: "Hi from Christian",
+    body: "Yo man",
+    sender_id: 1
+  },
+    {
+    subject: "Hi from Marco",
+    body: "Yo man",
+    sender_id: 2
+  },
+    {
+    subject: "Hi from Julie",
+    body: "Yo man",
+    sender_id: 3
+  }
+])
+

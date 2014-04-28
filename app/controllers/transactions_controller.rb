@@ -3,7 +3,7 @@ require 'pry'
 class TransactionsController < ApplicationController
 
   respond_to :json
-  # before_action :is_authenticated?, only: [:new, :edit, :update, :destroy]
+  before_action :is_authenticated?, only: [:new, :edit, :update, :destroy]
   before_action :set_transaction, only: [:update, :destroy]
   before_action :get_parent
 
@@ -23,7 +23,7 @@ class TransactionsController < ApplicationController
     transaction = if @parent
       @parent.transaction.new(transaction_params)
     else
-      Transaction.new(article_params)
+      Transaction.new(transaction_params)
     end
 
     if transaction.save
