@@ -16,6 +16,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :street_address1
       t.string :city
       t.string :country
+      t.belongs_to :conversation
 
       t.timestamps
     end

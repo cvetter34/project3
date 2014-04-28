@@ -32,8 +32,8 @@ Project3::Application.routes.draw do
           get ':id' => "transactions#index", on: :collection
         end
 
-        resources :messages, except: [ :edit, :new ], defaults: {format: :json} do
-          get ':id' => "messages#index", on: :collection
+        resources :conversations, except: [ :edit, :new ], defaults: {format: :json} do
+          get ':id' => "conversations#index", on: :collection
         end
 
     end
@@ -51,9 +51,13 @@ Project3::Application.routes.draw do
       get ':id' => "transactions#index", on: :collection
     end
 
-    resources :messages, except: [ :edit, :new ], defaults: {format: :json} do
-      get ':id' => "messages#index", on: :collection
+    resources :conversations, except: [ :edit, :new ], defaults: {format: :json} do
+      get ':id' => "conversations#index", on: :collection
     end
+
+      resources :messages, except: [ :edit, :new ], defaults: {format: :json} do
+        get ':id' => "messages#index", on: :collection
+      end
   end
 
 end

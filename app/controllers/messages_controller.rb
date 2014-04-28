@@ -4,13 +4,6 @@ class MessagesController < ApplicationController
   before_filter :set_user
 
   def index
-    # @messages= @user.sent_messages
-    # if params[:mailbox] == "sent"
-    #   @messages= @user.sent_messages
-    # elsif params[:mailbox] == "inbox"
-    #   @messages = @user.received_messages
-    # end
-    # @messages = @user.received_messages + @user.sent_messages
     @messages = if params[:id]
       Message.where("id in (?)", params[:id].split(','))
     else
@@ -20,12 +13,6 @@ class MessagesController < ApplicationController
 
   def new
     @message = Message.new
-    if params[:message_list_token]
-      @reply_to = User.find_by_user_id(params[:message_list_token])
-      unless @reply_to.nil?
-        @message.recepient_id = @reply_to.user_id
-      end
-    end
   end
 
   def create
@@ -44,21 +31,11 @@ class MessagesController < ApplicationController
     # @message = Message.find(params[:id])
   end
 
-  def delete_multiple
-    if params[:delete]
-      params[:delete].each { |id|
-      @message = Message.find(id)
-      @message.mark_message_deleted(@message.id,@user_id) unless @message.nil?
-      }
-      flash[:notice] = "Messages deleted"
-    end
-    redirect_to user_messages_path(@user, @messages)
-  end
 
   private
 
   def message_params
-    params.require(:message).permit(:id, :subject, :body, :sender_id, :recipient_id, :read_at, :sender_deleted, :recipient_deleted, :message_list_token)
+    params.require(:message).permit(:id, :subject, :body, :sender_id, :recipient_id, :read_at)
   end
 
   def set_user

@@ -22,6 +22,7 @@ $ ->
 
         loadUserProfile(data)
         loadToolsList(data)
+        loadConversations(data)
 
         $('#main').foundation()
 
@@ -34,6 +35,11 @@ $ ->
     toolListTemplate = HandlebarsTemplates['tools/tool_list'](data)
     $('#panel-tools').html("")
     $('#panel-tools').append(toolListTemplate)
+
+  loadConversations = (data) ->
+    messageListTemplate = HandlebarsTemplates['messages/message_list'](data)
+    $('#panel-messages').html("")
+    $('#panel-messages').append(messageListTemplate)
 
   $('#search').keyup () ->
 
