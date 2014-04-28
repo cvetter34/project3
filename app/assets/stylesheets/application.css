@@ -19,6 +19,7 @@
   GREEN: hsla(93, 65%, 39%, 1);
   RED: hsla(359, 86%, 42%, 1);
   GRAY: hsla(0, 0%, 50%, 1);
+  HIGHLIGHT BLUE: hsla(194, 66%, 61%, 1);
 
 */
 
@@ -62,6 +63,15 @@ ul {
   cursor: pointer;
 }
 
+.edit-tool-item {
+  cursor: hand;
+  cursor: pointer;
+}
+
+.edit-tool-item:hover {
+  color: hsla(194, 66%, 61%, 1);
+}
+
 .pin-row {
   margin-left: 3%;
 }
@@ -69,6 +79,14 @@ ul {
 .img-circle {
   height: 40px;
   width: 40px;
+  margin-bottom: 3%;
+  border-radius: 100px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .4);
+}
+
+.img-circle-large {
+  height: 120px;
+  width: 120px;
   margin-bottom: 3%;
   border-radius: 100px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, .4);
